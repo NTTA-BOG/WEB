@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-shield-alt"></i> Sản phẩm chính hãng</span>
+            <span><i class="fas fa-truck"></i> Giao hàng miễn phí</span>
+            <span><i class="fas fa-headset"></i> Hỗ trợ 24/7</span>
+            <span style="margin-left: auto;">
+                <a href="tel:0862412914" id="topbar-phone"><i class="fas fa-phone"></i> Hotline: <span id="topbar-phone-text">0862.412.914</span></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="search-bar">
+                    <form action="products.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm linh kiện PC...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <a href="login.html" class="header-icon" id="user-menu" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name" style="display: none; margin-left: 5px;"></span>
+                    </a>
+                    <a href="cart.html" class="header-icon" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html" class="active">Giới thiệu</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="admin-menu-item" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container" style="padding: 40px 0;">
+            <!-- Page Title -->
+            <div class="text-center mb-3">
+                <h1 style="color: var(--primary); margin-bottom: 10px;">Giới thiệu về Shop-D</h1>
+                <p class="text-muted" style="font-size: 1.1rem;">Đối tác tin cậy cho nhu cầu linh kiện PC của bạn</p>
+            </div>
+
+            <!-- About Content -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; align-items: center;">
+                <div>
+                    <img src="https://via.placeholder.com/600x400/0b71c6/ffffff?text=Shop-D+Store" 
+                         alt="Cửa hàng Shop-D" 
+                         style="border-radius: var(--radius-lg); box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+                </div>
+                <div>
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-history"></i> Lịch sử hình thành
+                    </h2>
+                    <p style="line-height: 1.8; text-align: justify;">
+                        <strong>Shop-D</strong> được thành lập vào năm 2020 với sứ mệnh mang đến cho khách hàng 
+                        những sản phẩm linh kiện PC chính hãng, chất lượng cao với giá cả hợp lý nhất. 
+                        Bắt đầu từ một cửa hàng nhỏ, chúng tôi đã không ngừng phát triển và mở rộng để 
+                        phục vụ hàng ngàn khách hàng trên toàn quốc.
+                    </p>
+                    <p style="line-height: 1.8; text-align: justify;">
+                        Với đội ngũ nhân viên giàu kinh nghiệm và am hiểu sâu về công nghệ, Shop-D cam kết 
+                        cung cấp dịch vụ tư vấn chuyên nghiệp, giúp khách hàng lựa chọn được những sản phẩm 
+                        phù hợp nhất với nhu cầu và ngân sách của mình.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission & Values -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; align-items: center;">
+                <div>
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">
+                        <i class="fas fa-bullseye"></i> Sứ mệnh
+                    </h2>
+                    <p style="line-height: 1.8; text-align: justify;">
+                        Sứ mệnh của Shop-D là trở thành điểm đến tin cậy hàng đầu cho mọi nhu cầu về 
+                        linh kiện máy tính, từ người dùng cá nhân đến doanh nghiệp. Chúng tôi cam kết:
+                    </p>
+                    <ul style="line-height: 2; margin-left: 20px;">
+                        <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Cung cấp sản phẩm chính hãng 100%</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Giá cả cạnh tranh nhất thị trường</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Dịch vụ bảo hành uy tín, nhanh chóng</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Tư vấn chuyên nghiệp, tận tâm</li>
+                        <li><i class="fas fa-check-circle" style="color: var(--success);"></i> Giao hàng nhanh chóng, an toàn</li>
+                    </ul>
+                    
+                    <h2 style="color: var(--primary); margin-top: 30px; margin-bottom: 20px;">
+                        <i class="fas fa-heart"></i> Giá trị cốt lõi
+                    </h2>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                            <strong style="color: var(--primary);">Chất lượng:</strong> 
+                            <span>Cam kết 100% sản phẩm chính hãng, chất lượng cao</span>
+                        </div>
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                            <strong style="color: var(--primary);">Uy tín:</strong> 
+                            <span>Xây dựng niềm tin với khách hàng qua từng giao dịch</span>
+                        </div>
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                            <strong style="color: var(--primary);">Tận tâm:</strong> 
+                            <span>Luôn lắng nghe và đáp ứng tốt nhất nhu cầu khách hàng</span>
+                        </div>
+                        <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                            <strong style="color: var(--primary);">Đổi mới:</strong> 
+                            <span>Không ngừng cập nhật công nghệ và cải tiến dịch vụ</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://via.placeholder.com/600x700/f7f7f7/0b71c6?text=Our+Values" 
+                         alt="Giá trị của Shop-D" 
+                         style="border-radius: var(--radius-lg); box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+                </div>
+            </div>
+
+            <!-- Featured Products Section -->
+            <div style="margin: 60px 0;">
+                <h2 class="text-center mb-3" style="color: var(--primary);">
+                    <i class="fas fa-star"></i> Sản phẩm tiêu biểu
+                </h2>
+                <div class="product-card-grid">
+                    <div class="product-card-item">
+                        <img src="https://via.placeholder.com/250x200/f7f7f7/0b71c6?text=CPU" alt="CPU">
+                        <div class="product-card-info">
+                            <h4>Bộ vi xử lý Intel & AMD</h4>
+                            <p class="text-muted">Hiệu năng mạnh mẽ cho mọi nhu cầu</p>
+                        </div>
+                    </div>
+                    <div class="product-card-item">
+                        <img src="https://via.placeholder.com/250x200/f7f7f7/0b71c6?text=VGA" alt="VGA">
+                        <div class="product-card-info">
+                            <h4>Card màn hình NVIDIA & AMD</h4>
+                            <p class="text-muted">Trải nghiệm gaming đỉnh cao</p>
+                        </div>
+                    </div>
+                    <div class="product-card-item">
+                        <img src="https://via.placeholder.com/250x200/f7f7f7/0b71c6?text=RAM" alt="RAM">
+                        <div class="product-card-info">
+                            <h4>RAM DDR4 & DDR5</h4>
+                            <p class="text-muted">Tốc độ xử lý vượt trội</p>
+                        </div>
+                    </div>
+                    <div class="product-card-item">
+                        <img src="https://via.placeholder.com/250x200/f7f7f7/0b71c6?text=SSD" alt="SSD">
+                        <div class="product-card-info">
+                            <h4>Ổ cứng SSD NVMe</h4>
+                            <p class="text-muted">Truy xuất dữ liệu siêu nhanh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Images -->
+            <div style="margin: 60px 0;">
+                <h2 class="text-center mb-3" style="color: var(--primary);">
+                    <i class="fas fa-images"></i> Hình ảnh cửa hàng
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <img src="https://via.placeholder.com/380x280/0b71c6/ffffff?text=Store+Front" 
+                         alt="Mặt tiền cửa hàng" 
+                         style="border-radius: var(--radius-md); width: 100%; height: 280px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="https://via.placeholder.com/380x280/0b71c6/ffffff?text=Interior" 
+                         alt="Bên trong cửa hàng" 
+                         style="border-radius: var(--radius-md); width: 100%; height: 280px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="https://via.placeholder.com/380x280/0b71c6/ffffff?text=Products" 
+                         alt="Sản phẩm" 
+                         style="border-radius: var(--radius-md); width: 100%; height: 280px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 60px 40px; border-radius: var(--radius-lg); margin: 60px 0; color: white;">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center;">
+                    <div>
+                        <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 2.5rem; margin-bottom: 10px;">5000+</h3>
+                        <p style="font-size: 1.1rem;">Khách hàng tin tưởng</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-box" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 2.5rem; margin-bottom: 10px;">10000+</h3>
+                        <p style="font-size: 1.1rem;">Sản phẩm đã bán</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-award" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 2.5rem; margin-bottom: 10px;">100+</h3>
+                        <p style="font-size: 1.1rem;">Thương hiệu uy tín</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-star" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 2.5rem; margin-bottom: 10px;">4.9/5</h3>
+                        <p style="font-size: 1.1rem;">Đánh giá từ khách hàng</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center" style="margin: 60px 0;">
+                <h2 style="color: var(--primary); margin-bottom: 20px;">Sẵn sàng nâng cấp PC của bạn?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--muted);">
+                    Khám phá bộ sưu tập linh kiện PC đa dạng của chúng tôi ngay hôm nay!
+                </p>
+                <a href="products.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-shopping-bag"></i> Xem sản phẩm
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>SHOP-D</h4>
+                    <p>Chuyên cung cấp linh kiện PC chính hãng, giá tốt nhất thị trường. Bảo hành uy tín, hỗ trợ tận tâm.</p>
+                    <div class="socials">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Zalo"><i class="fas fa-comments"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> Hotline: 0862.412.914</p>
+                    <p><i class="fas fa-envelope"></i> Email: contact@shop-d.vn</p>
+                    <p><i class="fas fa-clock"></i> 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <a href="https://facebook.com" class="chat-item facebook" target="_blank">
+            <i class="fab fa-facebook-messenger"></i> Chat Facebook
+        </a>
+        <a href="https://zalo.me" class="chat-item zalo" target="_blank">
+            <i class="fas fa-comments"></i> Chat Zalo
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

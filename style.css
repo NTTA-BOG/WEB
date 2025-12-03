@@ -1,0 +1,147 @@
+@import "css/variables.css";
+@import "css/base.css";
+@import "css/layout.css";
+@import "css/components.css";
+@import "css/theme.css";
+
+/* style.css is the single entry point — edit modular files under /css/ */
+.hero-banner {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    /* Giả lập hình nền đen giống ảnh */
+    background-image: url('https://via.placeholder.com/1920x600/000000/333333?text=Gaming+Background'); 
+    background-size: cover;
+    /* style.css is the central entry file. Real rules live inside /css/ */
+}
+.tag-item {
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.tag-item:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tag-item.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Lưới ô danh mục (Grid) */
+.cat-grid {
+    display: grid;
+    /* Tự động chia cột, mỗi cột tối thiểu 110px */
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+    gap: 10px;
+}
+
+/* Bản thân ô danh mục (Hộp đỏ) */
+.cat-box {
+    background-color: var(--primary);
+    border-radius: 8px;
+    padding: 15px 5px;
+    text-align: center;
+    color: white;
+    transition: transform 1s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 140px; /* Cố định chiều cao cho đều */
+}
+
+/* Hình ảnh bên trong ô */
+.cat-img {
+    background: white; /* Nền trắng đỡ ảnh sản phẩm lên */
+    border-radius: 5px; /* Bo góc ảnh một chút nếu muốn */
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.cat-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Đảm bảo ảnh không bị méo */
+}
+
+.cat-box span {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.cat-box:hover {
+    transform: translateY(-3px); /* Nổi lên nhẹ */
+    box-shadow: 0 4px 10px rgba(11, 113, 198, 0.4); /* Đổ bóng xanh dương */
+    background-color: var(--primary); /* Xanh dương đậm hơn chút */
+}
+
+/* --- PRODUCT SECTIONS (cards like screenshots) --- */
+.product-section { margin: 36px auto; }
+.product-section .section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; }
+.product-section h3 { font-size:22px; margin:0; text-transform:uppercase; color:var(--text); }
+.product-section .section-actions { color:var(--muted); font-size:13px; }
+.product-section .section-actions a { color:var(--primary); margin-left:6px; font-weight:700; }
+
+.product-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Product cards */
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    box-shadow: 0 3px 10px var(--card-shadow);
+    transition: transform .15s ease, box-shadow .15s ease;
+    align-items: flex-start;
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+.pcard-img { width: 150px; height: 110px; border-radius:6px; background: var(--card-bg); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.pcard-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.pcard-body { flex: 1; }
+.pcard-body h4 { font-size:14px; margin-bottom:8px; color:#222; line-height:1.2; height: 2.4em; overflow:hidden; }
+.price-row { display:flex; gap:8px; align-items:center; font-size:13px; color:#777; }
+.price-row .old { text-decoration: line-through; color:#999; }
+.price-row .discount { background: rgba(215, 0, 24, 0.08); color: var(--accent); padding:2px 6px; border-radius:4px; font-weight:700; font-size:12px; }
+.pcard-body .price { color:var(--accent); font-weight:800; font-size:18px; margin:6px 0; }
+.pcard-body .tag { font-size:12px; color:#666; margin-top:8px; }
+
+/* --- FOOTER --- */
+.site-footer { margin-top: 40px; background: var(--footer-bg); color: var(--footer-text); padding: 28px 0 0; }
+.site-footer .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 26px 0; }
+.site-footer h4 { color:#fff; margin-bottom:10px; font-size:15px; }
+.site-footer p, .site-footer li { color:#bbb; font-size:14px; line-height:1.5; }
+.site-footer ul { padding-left:0; }
+.site-footer ul li { margin-bottom:8px; }
+.site-footer ul li a { color:#bbb; }
+.site-footer .socials a { display:inline-block; margin-right:10px; color:#fff; font-size:18px; }
+.site-footer .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); color:#999; padding:12px 0; font-size:13px; margin-top:14px; }
+
+@media (max-width: 900px) {
+    .site-footer .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+    .site-footer .footer-grid { grid-template-columns: 1fr; }
+    .pcard-img { width: 120px; height: 90px; }
+}
+

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .products-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        @media (max-width: 768px) {
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+            .filter-sidebar {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-shield-alt"></i> Sản phẩm chính hãng</span>
+            <span><i class="fas fa-truck"></i> Giao hàng miễn phí</span>
+            <span><i class="fas fa-headset"></i> Hỗ trợ 24/7</span>
+            <span style="margin-left: auto;">
+                <a href="tel:0862412914" id="topbar-phone"><i class="fas fa-phone"></i> Hotline: <span id="topbar-phone-text">0862.412.914</span></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="search-bar">
+                    <form action="products.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm linh kiện PC...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <a href="login.html" class="header-icon" id="user-menu" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name" style="display: none; margin-left: 5px;"></span>
+                    </a>
+                    <a href="cart.html" class="header-icon" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="products.html" class="active">Sản phẩm</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="admin-menu-item" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 style="margin: 30px 0 20px; color: var(--primary);">
+                <i class="fas fa-th-large"></i> Danh sách sản phẩm
+            </h1>
+
+            <div class="products-container">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <div class="filter-section">
+                        <h4><i class="fas fa-filter"></i> Danh mục</h4>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-all" value="all" checked onchange="filterByCategory()">
+                            <label for="cat-all">Tất cả sản phẩm</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-cpu" value="cpu" onchange="filterByCategory()">
+                            <label for="cat-cpu">CPU - Bộ vi xử lý</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-mainboard" value="mainboard" onchange="filterByCategory()">
+                            <label for="cat-mainboard">Mainboard</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-ram" value="ram" onchange="filterByCategory()">
+                            <label for="cat-ram">RAM</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-vga" value="vga" onchange="filterByCategory()">
+                            <label for="cat-vga">Card màn hình</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-ssd" value="ssd" onchange="filterByCategory()">
+                            <label for="cat-ssd">Ổ cứng SSD</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-psu" value="psu" onchange="filterByCategory()">
+                            <label for="cat-psu">Nguồn máy tính</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-case" value="case" onchange="filterByCategory()">
+                            <label for="cat-case">Vỏ case</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="cat-cooling" value="cooling" onchange="filterByCategory()">
+                            <label for="cat-cooling">Tản nhiệt</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-dollar-sign"></i> Khoảng giá</h4>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-1" value="0-2000000" onchange="filterByPrice()">
+                            <label for="price-1">Dưới 2 triệu</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-2" value="2000000-5000000" onchange="filterByPrice()">
+                            <label for="price-2">2 - 5 triệu</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-3" value="5000000-10000000" onchange="filterByPrice()">
+                            <label for="price-3">5 - 10 triệu</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-4" value="10000000-20000000" onchange="filterByPrice()">
+                            <label for="price-4">10 - 20 triệu</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="price-5" value="20000000-999999999" onchange="filterByPrice()">
+                            <label for="price-5">Trên 20 triệu</label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="resetFilters()">
+                        <i class="fas fa-redo"></i> Đặt lại bộ lọc
+                    </button>
+                </aside>
+
+                <!-- Products Grid -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <p class="text-muted" id="product-count">Hiển thị 12 sản phẩm</p>
+                        <select id="sort-select" onchange="sortProducts()" style="padding: 8px 15px; border: 2px solid var(--border-color); border-radius: var(--radius-sm);">
+                            <option value="default">Mặc định</option>
+                            <option value="name-asc">Tên A-Z</option>
+                            <option value="name-desc">Tên Z-A</option>
+                            <option value="price-asc">Giá thấp đến cao</option>
+                            <option value="price-desc">Giá cao đến thấp</option>
+                        </select>
+                    </div>
+
+                    <div class="product-card-grid" id="products-list">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 id="footer-site-name">SHOP-D</h4>
+                    <p id="footer-description">Chuyên cung cấp linh kiện PC chính hãng, giá tốt nhất thị trường. Bảo hành uy tín, hỗ trợ tận tâm.</p>
+                    <div class="socials">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Zalo"><i class="fas fa-comments"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> Hotline: 0862.412.914</p>
+                    <p><i class="fas fa-envelope"></i> Email: contact@shop-d.vn</p>
+                    <p><i class="fas fa-clock"></i> 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <a href="https://facebook.com" class="chat-item facebook" target="_blank">
+            <i class="fab fa-facebook-messenger"></i> Chat Facebook
+        </a>
+        <a href="https://zalo.me" class="chat-item zalo" target="_blank">
+            <i class="fas fa-comments"></i> Chat Zalo
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

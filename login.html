@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .auth-container {
+            min-height: calc(100vh - 300px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            background: #fafafa;
+        }
+        .auth-box {
+            background: #ffffff !important;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            max-width: 450px;
+            width: 100%;
+        }
+        .auth-box * {
+            background: transparent !important;
+        }
+        .auth-box .form-control {
+            background: #ffffff !important;
+        }
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: transparent !important;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b6b6b;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        .auth-tab.active {
+            color: #0b71c6;
+            border-bottom-color: #0b71c6;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+        .auth-form label {
+            display: block !important;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #222222 !important;
+            font-size: 0.95rem;
+            background: #ffffff !important;
+        }
+        .auth-form label i {
+            color: #0b71c6 !important;
+            margin-right: 8px;
+            width: 18px;
+            display: inline-block;
+            background: transparent !important;
+        }
+        .auth-form .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #ffffff !important;
+            color: #222222 !important;
+        }
+        .btn {
+            background: #0b71c6 !important;
+        }
+        .btn-secondary {
+            background: #6c757d !important;
+        }
+        .btn-facebook {
+            background: #1877f2 !important;
+        }
+        .btn-google {
+            background: #ea4335 !important;
+        }
+        .auth-form .form-control:focus {
+            border-color: #0b71c6;
+            outline: none;
+        }
+        
+        /* Custom notification modal */
+        .notification-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            animation: fadeIn 0.2s ease;
+        }
+        .notification-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2c3e50;
+            color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideIn 0.3s ease;
+        }
+        .notification-modal h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+            color: white;
+        }
+        .notification-modal p {
+            margin: 0 0 20px 0;
+            color: #ecf0f1;
+            line-height: 1.6;
+        }
+        .notification-modal.success {
+            background: #2c3e50;
+            border-left: 5px solid #27ae60;
+        }
+        .notification-modal.error {
+            background: #2c3e50;
+            border-left: 5px solid #e74c3c;
+        }
+        .notification-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            min-width: 100px;
+        }
+        .notification-btn:hover {
+            background: #2980b9;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #6b6b6b;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+        .divider span {
+            padding: 0 15px;
+            background: transparent !important;
+            color: #6b6b6b !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-shield-alt"></i> Sản phẩm chính hãng</span>
+            <span><i class="fas fa-truck"></i> Giao hàng miễn phí</span>
+            <span><i class="fas fa-headset"></i> Hỗ trợ 24/7</span>
+            <span style="margin-left: auto;">
+                <a href="tel:0862412914" id="topbar-phone"><i class="fas fa-phone"></i> Hotline: <span id="topbar-phone-text">0862.412.914</span></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="search-bar">
+                    <form action="products.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm linh kiện PC...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <a href="login.html" class="header-icon" id="user-menu" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name" style="display: none; margin-left: 5px;"></span>
+                    </a>
+                    <a href="cart.html" class="header-icon" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="admin-menu-item" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Custom Notification Modal -->
+    <div class="notification-overlay" id="notificationOverlay">
+        <div class="notification-modal" id="notificationModal">
+            <h3 id="notificationTitle">Thông báo</h3>
+            <p id="notificationMessage"></p>
+            <button class="notification-btn" onclick="closeNotification()">OK</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="auth-container">
+            <div class="auth-box">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 80px; width: auto; margin: 0 auto 10px auto; display: block;">
+                    <p class="text-muted">Chào mừng bạn quay trở lại!</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('login')">
+                        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                    </button>
+                    <button class="auth-tab" onclick="switchTab('register')">
+                        <i class="fas fa-user-plus"></i> Đăng ký
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-username"><i class="fas fa-user"></i> Tên đăng nhập</label>
+                        <input type="text" id="login-username" class="form-control" required placeholder="Nhập tên đăng nhập">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password"><i class="fas fa-lock"></i> Mật khẩu</label>
+                        <input type="password" id="login-password" class="form-control" required placeholder="Nhập mật khẩu">
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 5px; font-weight: normal;">
+                            <input type="checkbox"> Ghi nhớ đăng nhập
+                        </label>
+                        <a href="#" style="color: var(--primary); font-size: 0.9rem;">Quên mật khẩu?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1.1rem;">
+                        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                    </button>
+
+                    <div class="divider">
+                        <span>HOẶC</span>
+                    </div>
+
+                    <div style="display: grid; gap: 10px;">
+                        <button type="button" class="btn" style="background: var(--social-fb); color: white; width: 100%;">
+                            <i class="fab fa-facebook-f"></i> Đăng nhập với Facebook
+                        </button>
+                        <button type="button" class="btn" style="background: #db4437; color: white; width: 100%;">
+                            <i class="fab fa-google"></i> Đăng nhập với Google
+                        </button>
+                    </div>
+
+                    <p class="text-center" style="margin-top: 20px; color: var(--muted); font-size: 0.9rem;">
+                        Tài khoản demo: <strong>admin / admin123</strong>
+                    </p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="register-username"><i class="fas fa-user"></i> Tên đăng nhập</label>
+                        <input type="text" id="register-username" class="form-control" required placeholder="Nhập tên đăng nhập">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="register-email" class="form-control" required placeholder="Nhập email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password"><i class="fas fa-lock"></i> Mật khẩu</label>
+                        <input type="password" id="register-password" class="form-control" required placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm"><i class="fas fa-lock"></i> Xác nhận mật khẩu</label>
+                        <input type="password" id="register-confirm" class="form-control" required placeholder="Nhập lại mật khẩu">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: flex; align-items: start; gap: 10px; font-weight: normal;">
+                            <input type="checkbox" required style="margin-top: 5px;">
+                            <span style="font-size: 0.9rem;">Tôi đồng ý với <a href="#" style="color: var(--primary);">Điều khoản sử dụng</a> và <a href="#" style="color: var(--primary);">Chính sách bảo mật</a></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" style="width: 100%; padding: 12px; font-size: 1.1rem;">
+                        <i class="fas fa-user-plus"></i> Đăng ký
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>SHOP-D</h4>
+                    <p>Chuyên cung cấp linh kiện PC chính hãng, giá tốt nhất thị trường. Bảo hành uy tín, hỗ trợ tận tâm.</p>
+                    <div class="socials">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Zalo"><i class="fas fa-comments"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> Hotline: 0862.412.914</p>
+                    <p><i class="fas fa-envelope"></i> Email: contact@shop-d.vn</p>
+                    <p><i class="fas fa-clock"></i> 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Custom notification functions
+        function showNotification(title, message, type = 'success') {
+            const overlay = document.getElementById('notificationOverlay');
+            const modal = document.getElementById('notificationModal');
+            const titleEl = document.getElementById('notificationTitle');
+            const messageEl = document.getElementById('notificationMessage');
+            
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            modal.className = 'notification-modal ' + type;
+            overlay.style.display = 'block';
+        }
+        
+        function closeNotification() {
+            document.getElementById('notificationOverlay').style.display = 'none';
+        }
+        
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            event.target.closest('.auth-tab').classList.add('active');
+            
+            // Update forms
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            document.getElementById(tab + '-form').classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (login(username, password)) {
+                const user = getCurrentUser();
+                showNotification('Đăng nhập thành công!', 'Chào mừng, ' + user.username + '!', 'success');
+                
+                // Redirect after showing notification
+                setTimeout(() => {
+                    if (user.role === 'admin') {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 1500);
+            } else {
+                showNotification('Đăng nhập thất bại!', 'Tên đăng nhập hoặc mật khẩu không đúng.', 'error');
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            
+            if (password !== confirm) {
+                showNotification('Lỗi xác nhận', 'Mật khẩu xác nhận không khớp!', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showNotification('Mật khẩu không hợp lệ', 'Mật khẩu phải có ít nhất 6 ký tự!', 'error');
+                return;
+            }
+            
+            const result = register(username, password, email);
+            
+            if (result.success) {
+                showNotification('Đăng ký thành công!', 'Vui lòng đăng nhập để tiếp tục.', 'success');
+                setTimeout(() => {
+                    switchTab('login');
+                    document.getElementById('register-form').reset();
+                }, 1500);
+            } else {
+                showNotification('Đăng ký thất bại!', result.message, 'error');
+            }
+        }
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

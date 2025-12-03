@@ -1,0 +1,84 @@
+/* Layout: header, nav, hero */
+
+/* Top bar */
+.top-bar { background-color: var(--primary); color: white; font-size:12px; padding:8px 0 }
+.top-bar .container { display:flex; justify-content:space-between }
+.top-bar span { margin-right:20px }
+.right-links a { margin-left:15px }
+
+/* Header */
+.main-header { background:white; padding:15px 0; border-bottom:1px solid #eee }
+.header-flex { display:flex; align-items:center; justify-content:space-between }
+.logo img { letter-spacing:-1px; border-radius:5px }
+
+/* Search */
+.search-area { width:50% }
+.search-box { display:flex; border:2px solid var(--primary); border-radius:5px; overflow:hidden }
+.search-box input{ width:100%; padding:10px; border:none; outline:none }
+.search-box button{ background:var(--primary); color:white; border:none; padding:0 20px; cursor:pointer }
+.search-tags { margin-top:5px; font-size:11px; color:#666 }
+.search-tags a{ background:#eee; padding:2px 8px; border-radius:4px; margin-right:5px }
+
+/* Header action items */
+.header-actions { display:flex; gap:20px }
+.action-item{ display:flex; align-items:center; gap:8px; font-size:13px; cursor:pointer }
+.action-item i{ font-size:20px; color:var(--primary) }
+.cart-btn { position:relative; background:var(--muted-accent); padding:5px 10px; border-radius:20px; border:1px solid var(--primary) }
+.badge{ position:absolute; top:-5px; right:-5px; background:var(--primary); color:white; font-size:10px; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center }
+
+/* Theme toggle in header */
+.theme-toggle { cursor: pointer; display:flex; align-items:center; gap:8px; color:var(--primary); }
+.theme-toggle i { font-size:18px }
+
+/* Nav */
+.main-nav { background:white; padding:10px 0; border-bottom:1px solid #ddd }
+.nav-flex { display:flex; align-items:center; gap:30px }
+.category-btn { background:var(--primary); color:white; padding:10px 20px; border-radius:5px; font-weight:bold; display:flex; align-items:center; gap:10px }
+.brand-links{ display:flex; gap:20px; font-weight:600; font-size:14px }
+.brand-links a:hover { color:var(--primary) }
+
+/* responsive header/nav */
+@media (max-width: 900px){
+	.header-flex { gap:12px }
+	.search-area{ display:none } /* hide search on small screens to save space */
+	.logo img { width:120px }
+}
+
+/* Mobile nav toggle (hamburger) */
+.hamburger { display:none; background:transparent; border:0; font-size:22px; cursor:pointer; color:var(--primary); padding:8px; border-radius:6px }
+.hamburger:focus{ outline:none }
+
+/* When screen narrow, hide main nav and show hamburger */
+@media (max-width: 900px){
+	.nav-flex{ display:none }
+	.hamburger { display:inline-flex; align-items:center; gap:6px }
+	/* header layout tweak for small screens */
+	.header-flex { justify-content:space-between }
+}
+
+/* Mobile nav open state: show nav as full-width stacked menu */
+body.nav-open .main-nav { position:fixed; inset:64px 0 0 0; background:var(--bg); z-index:9999; border-bottom:0; box-shadow:0 4px 20px rgba(0,0,0,0.12) }
+body.nav-open .main-nav .container { display:block; padding:18px }
+body.nav-open .nav-flex { display:flex; flex-direction:column; gap:14px }
+body.nav-open .nav-flex a { display:block; padding:10px; border-radius:6px; background:transparent }
+body.nav-open .menu-wrapper .dropdown-list { position:static; display:block; width:100%; box-shadow:none; background:transparent; padding:0 }
+
+
+@media (max-width: 520px){
+	.header-flex { flex-direction:column; align-items:flex-start; gap:8px }
+	.logo img { width:140px }
+	.nav-flex { flex-direction:column; gap:6px }
+	.category-btn{ width:100% }
+}
+
+/* Dropdown menu */
+.menu-wrapper{ position:relative; z-index:1000 }
+.dropdown-list { position:absolute; top:135%; left:0; width:280px; background:white; box-shadow:0 5px 15px rgba(0,0,0,0.2); border-radius:0 0 8px 8px; display:none; padding:10px 0 }
+.menu-wrapper:hover .dropdown-list { display:block }
+.dropdown-list li a { display:flex; align-items:center; padding:10px 20px; color:#333; font-size:14px; font-weight:500; transition:all .2s }
+.dropdown-list li a i { width:25px; margin-right:10px; color:#555 }
+.dropdown-list li a:hover{ background-color:var(--accent-bg); color:var(--accent) }
+.dropdown-list li a:hover i{ color:var(--accent) }
+
+/* Hero banner (kept in layout) */
+.hero-banner { background-color:#000; color:white; text-align:center; padding:50px 0; background-image: url('https://via.placeholder.com/1920x600/000000/333333?text=Gaming+Background'); background-size:cover; background-position:center; position:relative }

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-user-shield"></i> Trang quản trị</span>
+            <span style="margin-left: auto;" id="admin-user-info">
+                <i class="fas fa-user"></i> <span id="admin-username"></span> | 
+                <a href="#" onclick="logout()" style="color: white;"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div style="flex: 1;"></div>
+
+                <div class="header-icons">
+                    <a href="index.html" class="header-icon" title="Trang chủ">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container" style="padding: 40px 0;">
+            <h1 style="color: var(--primary); margin-bottom: 30px;">
+                <i class="fas fa-tachometer-alt"></i> Bảng điều khiển
+            </h1>
+
+            <!-- Statistics Cards -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px;">
+                <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 25px; border-radius: var(--radius-lg); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="margin: 0; opacity: 0.9;">Tổng sản phẩm</p>
+                            <h2 style="margin: 10px 0 0; font-size: 2.5rem;" id="stat-products">0</h2>
+                        </div>
+                        <i class="fas fa-box" style="font-size: 3rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--success), #1e7e34); color: white; padding: 25px; border-radius: var(--radius-lg); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="margin: 0; opacity: 0.9;">Đơn hàng</p>
+                            <h2 style="margin: 10px 0 0; font-size: 2.5rem;" id="stat-orders">0</h2>
+                        </div>
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--warning), #d39e00); color: white; padding: 25px; border-radius: var(--radius-lg); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="margin: 0; opacity: 0.9;">Khách hàng</p>
+                            <h2 style="margin: 10px 0 0; font-size: 2.5rem;" id="stat-users">0</h2>
+                        </div>
+                        <i class="fas fa-users" style="font-size: 3rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 25px; border-radius: var(--radius-lg); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <p style="margin: 0; opacity: 0.9;">Doanh thu</p>
+                            <h2 style="margin: 10px 0 0; font-size: 1.5rem;" id="stat-revenue">0₫</h2>
+                        </div>
+                        <i class="fas fa-dollar-sign" style="font-size: 3rem; opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div class="admin-dashboard">
+                <!-- Sidebar -->
+                <div class="admin-sidebar">
+                    <h3 style="margin-bottom: 20px; color: var(--primary);">
+                        <i class="fas fa-list"></i> Quản lý
+                    </h3>
+                    <ul>
+                        <li><a href="#" class="active" onclick="showSection('products'); return false;">
+                            <i class="fas fa-box"></i> Sản phẩm
+                        </a></li>
+                        <li><a href="#" onclick="showSection('orders'); return false;">
+                            <i class="fas fa-shopping-cart"></i> Đơn hàng
+                        </a></li>
+                        <li><a href="#" onclick="showSection('news'); return false;">
+                            <i class="fas fa-newspaper"></i> Tin tức
+                        </a></li>
+                        <li><a href="#" onclick="showSection('promotions'); return false;">
+                            <i class="fas fa-tags"></i> Khuyến mãi
+                        </a></li>
+                        <li><a href="#" onclick="showSection('settings'); return false;">
+                            <i class="fas fa-cog"></i> Cài đặt web
+                        </a></li>
+                        <li><a href="#" onclick="showSection('users'); return false;">
+                            <i class="fas fa-users"></i> Tài khoản
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="admin-content">
+                    <!-- Products Management -->
+                    <div id="section-products" class="admin-section">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <h2 style="margin: 0; color: var(--primary);">
+                                <i class="fas fa-box"></i> Quản lý sản phẩm
+                            </h2>
+                            <button class="btn btn-primary" onclick="showAddProductModal()">
+                                <i class="fas fa-plus"></i> Thêm sản phẩm
+                            </button>
+                        </div>
+
+                        <div class="data-table">
+                            <table id="products-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Danh mục</th>
+                                        <th>Giá</th>
+                                        <th>Tồn kho</th>
+                                        <th>Nổi bật</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="products-tbody">
+                                    <!-- Products will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Orders Management -->
+                    <div id="section-orders" class="admin-section" style="display: none;">
+                        <h2 style="margin-bottom: 25px; color: var(--primary);">
+                            <i class="fas fa-shopping-cart"></i> Quản lý đơn hàng
+                        </h2>
+
+                        <div class="data-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Mã ĐH</th>
+                                        <th>Khách hàng</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-tbody">
+                                    <!-- Orders will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- News Management -->
+                    <div id="section-news" class="admin-section" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <h2 style="margin: 0; color: var(--primary);">
+                                <i class="fas fa-newspaper"></i> Quản lý tin tức
+                            </h2>
+                            <button class="btn btn-primary" onclick="showAddNewsModal()">
+                                <i class="fas fa-plus"></i> Thêm tin tức
+                            </button>
+                        </div>
+
+                        <div class="data-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Danh mục</th>
+                                        <th>Lượt xem</th>
+                                        <th>Nổi bật</th>
+                                        <th>Ngày đăng</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="news-tbody">
+                                    <!-- News will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Promotions Management -->
+                    <div id="section-promotions" class="admin-section" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <h2 style="margin: 0; color: var(--primary);">
+                                <i class="fas fa-tags"></i> Quản lý khuyến mãi
+                            </h2>
+                            <button class="btn btn-primary" onclick="showAddPromotionModal()">
+                                <i class="fas fa-plus"></i> Thêm khuyến mãi
+                            </button>
+                        </div>
+
+                        <div class="data-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Giảm giá</th>
+                                        <th>Loại</th>
+                                        <th>Từ ngày</th>
+                                        <th>Đến ngày</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="promotions-tbody">
+                                    <!-- Promotions will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Site Settings -->
+                    <div id="section-settings" class="admin-section" style="display: none;">
+                        <h2 style="margin-bottom: 25px; color: var(--primary);">
+                            <i class="fas fa-cog"></i> Cài đặt trang web
+                        </h2>
+
+                        <div style="background: white; padding: 30px; border-radius: var(--radius-lg); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <form id="settings-form" onsubmit="handleUpdateSettings(event)">
+                                <h3 style="color: var(--primary); margin-bottom: 20px;">
+                                    <i class="fas fa-info-circle"></i> Thông tin chung
+                                </h3>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                    <div class="form-group">
+                                        <label>Tên website</label>
+                                        <input type="text" id="setting-sitename" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tiêu đề website</label>
+                                        <input type="text" id="setting-title" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mô tả website</label>
+                                    <textarea id="setting-description" class="form-control" rows="2"></textarea>
+                                </div>
+
+                                <hr style="margin: 30px 0;">
+
+                                <h3 style="color: var(--primary); margin-bottom: 20px;">
+                                    <i class="fas fa-phone"></i> Thông tin liên hệ
+                                </h3>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input type="text" id="setting-phone" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" id="setting-email" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" id="setting-address" class="form-control">
+                                </div>
+
+                                <hr style="margin: 30px 0;">
+
+                                <h3 style="color: var(--primary); margin-bottom: 20px;">
+                                    <i class="fas fa-image"></i> Banner quản lý
+                                </h3>
+
+                                <div id="banners-list" style="margin-bottom: 20px;">
+                                    <!-- Banners will be loaded here -->
+                                </div>
+
+                                <button type="button" class="btn btn-secondary" onclick="showAddBannerModal()">
+                                    <i class="fas fa-plus"></i> Thêm banner
+                                </button>
+
+                                <hr style="margin: 30px 0;">
+
+                                <button type="submit" class="btn btn-success" style="width: 100%;">
+                                    <i class="fas fa-save"></i> Lưu cài đặt
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Users Management -->
+                    <div id="section-users" class="admin-section" style="display: none;">
+                        <h2 style="margin-bottom: 25px; color: var(--primary);">
+                            <i class="fas fa-users"></i> Quản lý tài khoản
+                        </h2>
+
+                        <div class="data-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên đăng nhập</th>
+                                        <th>Email</th>
+                                        <th>Vai trò</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-tbody">
+                                    <!-- Users will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Thêm sản phẩm mới</h3>
+                <button class="modal-close" onclick="closeModal('add-product-modal'); return false;">&times;</button>
+            </div>
+            <form onsubmit="handleAddProduct(event)" id="add-product-form">
+                <div class="form-group">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" id="product-name" class="form-control" required>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Giá hiện tại (₫)</label>
+                        <input type="number" id="product-price" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Giá cũ (₫) <span style="color: var(--muted); font-size: 0.85rem;">(tùy chọn)</span></label>
+                        <input type="number" id="product-old-price" class="form-control">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select id="product-category" class="form-control" required>
+                            <option value="cpu">CPU</option>
+                            <option value="mainboard">Mainboard</option>
+                            <option value="ram">RAM</option>
+                            <option value="vga">Card màn hình</option>
+                            <option value="ssd">SSD</option>
+                            <option value="psu">Nguồn</option>
+                            <option value="case">Case</option>
+                            <option value="cooling">Tản nhiệt</option>
+                        </select>
+                    </div>
+                <div class="form-group">
+                    <label>Số lượng tồn kho</label>
+                    <input type="number" id="product-stock" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Mô tả sản phẩm</label>
+                <textarea id="product-description" class="form-control" rows="3" placeholder="Nhập mô tả chi tiết về sản phẩm..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="product-featured" style="width: auto; height: auto;">
+                    <span><i class="fas fa-star" style="color: #ffc107;"></i> Đánh dấu là sản phẩm nổi bật</span>
+                </label>
+                <small style="color: var(--muted); display: block; margin-top: 5px;">
+                    Sản phẩm nổi bật sẽ hiển thị ở trang chủ
+                </small>
+            </div>                <div class="form-group">
+                    <label>Hình ảnh sản phẩm</label>
+                    <input type="file" id="product-image" class="form-control" accept="image/*" onchange="previewImage(event)">
+                    <small style="color: var(--muted); display: block; margin-top: 5px;">
+                        <i class="fas fa-info-circle"></i> Chọn file ảnh (JPG, PNG, GIF). Ảnh sẽ được lưu trữ trong trình duyệt.
+                    </small>
+                </div>
+
+                <div id="image-preview" style="display: none; margin-top: 15px; text-align: center;">
+                    <p style="margin-bottom: 10px; color: var(--primary); font-weight: 600;">
+                        <i class="fas fa-image"></i> Preview:
+                    </p>
+                    <img id="preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: var(--radius-md); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeImage()" style="margin-top: 10px;">
+                        <i class="fas fa-times"></i> Xóa ảnh
+                    </button>
+                </div>
+
+                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-save"></i> Lưu sản phẩm
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div id="order-detail-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-receipt"></i> Chi tiết đơn hàng <span id="order-id-display"></span></h3>
+                <button class="modal-close" onclick="closeModal('order-detail-modal'); return false;">&times;</button>
+            </div>
+            <div id="order-detail-content" style="padding: 20px;">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D Admin Panel. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add News Modal -->
+    <div id="add-news-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Thêm tin tức mới</h3>
+                <button class="modal-close" onclick="closeModal('add-news-modal'); return false;">&times;</button>
+            </div>
+            <form onsubmit="handleAddNews(event)" id="add-news-form">
+                <div class="form-group">
+                    <label>Tiêu đề</label>
+                    <input type="text" id="news-title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tóm tắt</label>
+                    <textarea id="news-excerpt" class="form-control" rows="2" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Nội dung chi tiết</label>
+                    <textarea id="news-content" class="form-control" rows="5" required></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select id="news-category" class="form-control" required>
+                            <option value="tin-tuc">Tin tức</option>
+                            <option value="danh-gia">Đánh giá</option>
+                            <option value="huong-dan">Hướng dẫn</option>
+                            <option value="khuyen-mai">Khuyến mãi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Hình ảnh (URL hoặc upload)</label>
+                        <input type="file" id="news-image" class="form-control" accept="image/*" onchange="previewNewsImage(event)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="news-featured" style="width: auto; height: auto;">
+                        <span><i class="fas fa-star" style="color: #ffc107;"></i> Tin tức nổi bật</span>
+                    </label>
+                </div>
+
+                <div id="news-image-preview" style="display: none; margin-top: 15px; text-align: center;">
+                    <img id="news-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: var(--radius-md);">
+                </div>
+
+                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-save"></i> Lưu tin tức
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Promotion Modal -->
+    <div id="add-promotion-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Thêm khuyến mãi mới</h3>
+                <button class="modal-close" onclick="closeModal('add-promotion-modal'); return false;">&times;</button>
+            </div>
+            <form onsubmit="handleAddPromotion(event)" id="add-promotion-form">
+                <div class="form-group">
+                    <label>Tiêu đề khuyến mãi</label>
+                    <input type="text" id="promo-title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea id="promo-description" class="form-control" rows="2" required></textarea>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Phần trăm giảm giá (%)</label>
+                        <input type="number" id="promo-discount" class="form-control" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Loại khuyến mãi</label>
+                        <select id="promo-type" class="form-control" required>
+                            <option value="flash-sale">Flash Sale</option>
+                            <option value="new-arrival">Hàng mới về</option>
+                            <option value="discount">Giảm giá sốc</option>
+                            <option value="combo">Combo tiết kiệm</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Từ ngày</label>
+                        <input type="date" id="promo-start" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Đến ngày</label>
+                        <input type="date" id="promo-end" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Hình ảnh banner</label>
+                    <input type="file" id="promo-image" class="form-control" accept="image/*" onchange="previewPromoImage(event)">
+                </div>
+
+                <div id="promo-image-preview" style="display: none; margin-top: 15px; text-align: center;">
+                    <img id="promo-preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 150px; border-radius: var(--radius-md);">
+                </div>
+
+                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-save"></i> Lưu khuyến mãi
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Banner Modal -->
+    <div id="add-banner-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus"></i> Thêm banner mới</h3>
+                <button class="modal-close" onclick="closeModal('add-banner-modal'); return false;">&times;</button>
+            </div>
+            <form onsubmit="handleAddBanner(event)" id="add-banner-form">
+                <div class="form-group">
+                    <label>Tiêu đề banner</label>
+                    <input type="text" id="banner-title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Link đích (URL)</label>
+                    <input type="text" id="banner-link" class="form-control" placeholder="products.html" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Hình ảnh banner (1200x400px khuyến nghị)</label>
+                    <input type="file" id="banner-image" class="form-control" accept="image/*" onchange="previewBannerImage(event)" required>
+                </div>
+
+                <div id="banner-image-preview" style="display: none; margin-top: 15px; text-align: center;">
+                    <img id="banner-preview-img" src="" alt="Preview" style="max-width: 100%; border-radius: var(--radius-md);">
+                </div>
+
+                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-save"></i> Lưu banner
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/promotions.js"></script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

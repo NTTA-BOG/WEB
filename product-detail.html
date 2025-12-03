@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        .product-image {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+        }
+        .product-info {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+        }
+        .product-specs {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin: 20px 0;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-shield-alt"></i> Sản phẩm chính hãng</span>
+            <span><i class="fas fa-truck"></i> Giao hàng miễn phí</span>
+            <span><i class="fas fa-headset"></i> Hỗ trợ 24/7</span>
+            <span style="margin-left: auto;">
+                <a href="tel:0862412914" id="topbar-phone"><i class="fas fa-phone"></i> Hotline: <span id="topbar-phone-text">0862.412.914</span></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="search-bar">
+                    <form action="products.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm linh kiện PC...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <a href="login.html" class="header-icon" id="user-menu" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name" style="display: none; margin-left: 5px;"></span>
+                    </a>
+                    <a href="cart.html" class="header-icon" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="admin-menu-item" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div style="margin: 20px 0;">
+                <a href="products.html" class="text-muted"><i class="fas fa-arrow-left"></i> Quay lại danh sách sản phẩm</a>
+            </div>
+
+            <div class="product-detail-container" id="product-detail">
+                <!-- Product details will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>SHOP-D</h4>
+                    <p>Chuyên cung cấp linh kiện PC chính hãng, giá tốt nhất thị trường. Bảo hành uy tín, hỗ trợ tận tâm.</p>
+                    <div class="socials">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Zalo"><i class="fas fa-comments"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> Hotline: 0862.412.914</p>
+                    <p><i class="fas fa-envelope"></i> Email: contact@shop-d.vn</p>
+                    <p><i class="fas fa-clock"></i> 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <a href="https://facebook.com" class="chat-item facebook" target="_blank">
+            <i class="fab fa-facebook-messenger"></i> Chat Facebook
+        </a>
+        <a href="https://zalo.me" class="chat-item zalo" target="_blank">
+            <i class="fas fa-comments"></i> Chat Zalo
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+        
+        // Find product
+        const product = allProducts.find(p => p.id === productId);
+        
+        if (product) {
+            const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+            
+            document.getElementById('product-detail').innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h1 style="color: var(--primary); margin-bottom: 20px;">${product.name}</h1>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                        <span style="font-size: 2rem; color: var(--accent); font-weight: 700;">${formatPrice(product.price)}</span>
+                        ${product.oldPrice ? `
+                            <span style="font-size: 1.2rem; text-decoration: line-through; color: var(--muted);">${formatPrice(product.oldPrice)}</span>
+                            <span style="background: var(--accent); color: white; padding: 5px 15px; border-radius: var(--radius-md); font-weight: 700;">-${discount}%</span>
+                        ` : ''}
+                    </div>
+                    
+                    <div style="background: var(--primary-light); padding: 15px; border-radius: var(--radius-md); margin-bottom: 25px;">
+                        <p style="margin: 0; color: var(--primary);"><i class="fas fa-check-circle"></i> <strong>Còn hàng</strong> - Giao hàng trong 24h</p>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <h3 style="margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Thông số kỹ thuật</h3>
+                        <div class="spec-item">
+                            <span><strong>Danh mục:</strong></span>
+                            <span>${getCategoryName(product.category)}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span><strong>Bảo hành:</strong></span>
+                            <span>36 tháng chính hãng</span>
+                        </div>
+                        <div class="spec-item">
+                            <span><strong>Xuất xứ:</strong></span>
+                            <span>Chính hãng phân phối tại Việt Nam</span>
+                        </div>
+                        <div class="spec-item">
+                            <span><strong>Tình trạng:</strong></span>
+                            <span style="color: var(--success); font-weight: 600;"><i class="fas fa-check"></i> Còn hàng</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin: 30px 0;">
+                        <button class="btn btn-primary" style="flex: 1; padding: 15px; font-size: 1.1rem;" 
+                                onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}'); window.location.href='cart.html'">
+                            <i class="fas fa-shopping-cart"></i> Mua ngay
+                        </button>
+                        <button class="btn btn-secondary" style="flex: 1; padding: 15px; font-size: 1.1rem;" 
+                                onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                    
+                    <div style="border-top: 2px solid var(--border-color); padding-top: 20px; margin-top: 20px;">
+                        <h3 style="margin-bottom: 15px;"><i class="fas fa-award"></i> Chính sách bán hàng</h3>
+                        <ul style="line-height: 2;">
+                            <li><i class="fas fa-check" style="color: var(--success);"></i> Miễn phí giao hàng toàn quốc</li>
+                            <li><i class="fas fa-check" style="color: var(--success);"></i> Đổi trả trong vòng 7 ngày</li>
+                            <li><i class="fas fa-check" style="color: var(--success);"></i> Bảo hành chính hãng 36 tháng</li>
+                            <li><i class="fas fa-check" style="color: var(--success);"></i> Hỗ trợ kỹ thuật 24/7</li>
+                            <li><i class="fas fa-check" style="color: var(--success);"></i> Thanh toán khi nhận hàng (COD)</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('product-detail').innerHTML = `
+                <div style="text-align: center; padding: 60px; grid-column: 1/-1;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--warning); margin-bottom: 20px;"></i>
+                    <h2>Không tìm thấy sản phẩm</h2>
+                    <p class="text-muted">Sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
+                    <a href="products.html" class="btn btn-primary" style="margin-top: 20px;">Xem tất cả sản phẩm</a>
+                </div>
+            `;
+        }
+        
+        function getCategoryName(category) {
+            const categories = {
+                'cpu': 'CPU - Bộ vi xử lý',
+                'mainboard': 'Mainboard',
+                'ram': 'RAM',
+                'vga': 'Card màn hình',
+                'ssd': 'Ổ cứng SSD',
+                'psu': 'Nguồn máy tính',
+                'case': 'Vỏ case',
+                'cooling': 'Tản nhiệt'
+            };
+            return categories[category] || category;
+        }
+    </script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

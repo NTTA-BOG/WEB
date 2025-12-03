@@ -1,0 +1,49 @@
+/* Variables (theme colors) — CHANGE PRIMARY HERE */
+:root{
+    /* Color palette (driven by SHOP-D logo) */
+    --primary: #0b71c6;   /* main blue (from logo) */
+    --primary-dark: #095aa3;
+    --primary-light: #e3f2fd;
+    --bg: #fafafa;        /* page background */
+    --text: #222222;      /* primary text */
+    --muted: #6b6b6b;     /* muted text */
+    --accent: #d70018;    /* discount / red accent */
+
+    /* helper colors */
+    --card-shadow: rgba(0,0,0,0.06);
+    --card-bg: #f7f7f7;         /* neutral card image bg */
+    --muted-accent: #fff3f3;    /* subtle pink used for cart */
+    --accent-bg: rgba(215,0,24,0.06); /* light red background for discounts */
+    --accent-dark: #e6001c;     /* deeper red for hover */
+    --footer-bg: #0f1720;
+    --footer-text: #ddd;
+    --border-color: #e0e0e0;
+    --white: #ffffff;
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    
+    /* social colors */
+    --social-fb: #1877f2;
+    --social-zalo: #0068ff;
+    --social-youtube: #ff0000;
+    --social-instagram: #e4405f;
+    
+    /* spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* border radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* Theme guide: edit variables here (primary & accent) to recolor site quickly */

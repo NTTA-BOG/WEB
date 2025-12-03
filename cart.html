@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Shop-D</title>
+    <link rel="icon" href="images/Icon_sp_D.png" type="image/png">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        @media (max-width: 968px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-shield-alt"></i> Sản phẩm chính hãng</span>
+            <span><i class="fas fa-truck"></i> Giao hàng miễn phí</span>
+            <span><i class="fas fa-headset"></i> Hỗ trợ 24/7</span>
+            <span style="margin-left: auto;">
+                <a href="tel:0862412914" id="topbar-phone"><i class="fas fa-phone"></i> Hotline: <span id="topbar-phone-text">0862.412.914</span></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/Logo_sp_D.png" alt="Shop-D" style="height: 60px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="search-bar">
+                    <form action="products.html" method="GET">
+                        <input type="text" name="search" placeholder="Tìm kiếm linh kiện PC...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="header-icons">
+                    <a href="login.html" class="header-icon" id="user-menu" title="Đăng nhập">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name" style="display: none; margin-left: 5px;"></span>
+                    </a>
+                    <a href="cart.html" class="header-icon" title="Giỏ hàng">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge" id="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Giới thiệu</a></li>
+                <li><a href="products.html">Sản phẩm</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <li id="admin-menu-item" style="display: none;"><a href="admin.html">Quản trị</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1 style="margin: 30px 0 20px; color: var(--primary);">
+                <i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn
+            </h1>
+
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cart Summary -->
+                <div id="cart-summary" class="cart-summary">
+                    <h3><i class="fas fa-receipt"></i> Tóm tắt đơn hàng</h3>
+                    
+                    <div class="summary-row">
+                        <span>Tạm tính:</span>
+                        <span id="subtotal">0₫</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Thuế VAT (10%):</span>
+                        <span id="tax">0₫</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Phí vận chuyển:</span>
+                        <span id="shipping">50.000₫</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Tổng cộng:</span>
+                        <span id="total">0₫</span>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 15px; font-size: 1.1rem;" onclick="proceedToCheckout()">
+                        <i class="fas fa-credit-card"></i> Tiến hành đặt hàng
+                    </button>
+                    
+                    <a href="products.html" class="btn btn-secondary" style="width: 100%; margin-top: 10px; text-align: center; display: block; padding: 15px;">
+                        <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+
+            <!-- Checkout Form (Hidden by default) -->
+            <div id="checkout-form" style="display: none; margin: 40px 0;">
+                <h2 style="color: var(--primary); margin-bottom: 30px;">
+                    <i class="fas fa-clipboard-list"></i> Thông tin đặt hàng
+                </h2>
+                
+                <div style="background: var(--white); padding: 30px; border-radius: var(--radius-lg);">
+                    <form id="order-form" onsubmit="submitOrder(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="form-group">
+                                <label for="fullname">Họ và tên <span style="color: var(--accent);">*</span></label>
+                                <input type="text" id="fullname" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại <span style="color: var(--accent);">*</span></label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="city">Tỉnh/Thành phố <span style="color: var(--accent);">*</span></label>
+                                <select id="city" class="form-control" required>
+                                    <option value="">Chọn tỉnh/thành</option>
+                                    <option value="hcm">TP. Hồ Chí Minh</option>
+                                    <option value="hn">Hà Nội</option>
+                                    <option value="dn">Đà Nẵng</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Địa chỉ giao hàng <span style="color: var(--accent);">*</span></label>
+                            <textarea id="address" class="form-control" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Ghi chú đơn hàng</label>
+                            <textarea id="notes" class="form-control" rows="3" placeholder="Ghi chú về đơn hàng (tuỳ chọn)"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><strong>Phương thức thanh toán:</strong></label>
+                            <div style="margin-top: 10px;">
+                                <div style="margin-bottom: 10px;">
+                                    <input type="radio" id="payment-cod" name="payment" value="cod" checked>
+                                    <label for="payment-cod" style="font-weight: normal; margin-left: 5px;">
+                                        <i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng (COD)
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="payment-bank" name="payment" value="bank">
+                                    <label for="payment-bank" style="font-weight: normal; margin-left: 5px;">
+                                        <i class="fas fa-university"></i> Chuyển khoản ngân hàng
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; margin-top: 30px;">
+                            <button type="submit" class="btn btn-success" style="flex: 1; padding: 15px; font-size: 1.1rem;">
+                                <i class="fas fa-check-circle"></i> Xác nhận đặt hàng
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="cancelCheckout()" style="padding: 15px;">
+                                <i class="fas fa-times"></i> Hủy
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>SHOP-D</h4>
+                    <p>Chuyên cung cấp linh kiện PC chính hãng, giá tốt nhất thị trường. Bảo hành uy tín, hỗ trợ tận tâm.</p>
+                    <div class="socials">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="Zalo"><i class="fas fa-comments"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone"></i> Hotline: 0862.412.914</p>
+                    <p><i class="fas fa-envelope"></i> Email: contact@shop-d.vn</p>
+                    <p><i class="fas fa-clock"></i> 8:00 - 21:00 (Hàng ngày)</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2025 Shop-D. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <a href="https://facebook.com" class="chat-item facebook" target="_blank">
+            <i class="fab fa-facebook-messenger"></i> Chat Facebook
+        </a>
+        <a href="https://zalo.me" class="chat-item zalo" target="_blank">
+            <i class="fas fa-comments"></i> Chat Zalo
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            
+            document.getElementById('checkout-form').style.display = 'block';
+            document.getElementById('checkout-form').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function cancelCheckout() {
+            document.getElementById('checkout-form').style.display = 'none';
+            document.getElementById('order-form').reset();
+        }
+        
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            const customerInfo = {
+                fullname: document.getElementById('fullname').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                city: document.getElementById('city').value,
+                address: document.getElementById('address').value,
+                notes: document.getElementById('notes').value,
+                payment: document.querySelector('input[name="payment"]:checked').value
+            };
+            
+            const order = createOrder(customerInfo, [...cart]);
+            
+            alert(`Đặt hàng thành công!\nMã đơn hàng: #${order.id}\n\nCảm ơn bạn đã mua hàng tại Shop-D!\nChúng tôi sẽ liên hệ với bạn sớm nhất.`);
+            
+            // Redirect to homepage
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="js/site-settings.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
